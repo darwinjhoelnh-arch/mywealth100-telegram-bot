@@ -23,8 +23,8 @@ const menuKeyboard = {
       ["Servicios tecnologicos", "Reventa 50%"],
       ["Wealthy Trip", "Wealthy Car"],
       ["Wealthy Home", "Sistema Follow Me"],
-      ["Temporada 1", "Temporada 2"],
-      ["Temporada 3", "Premios"],
+      ["Ronda 1", "Ronda 2"],
+      ["Ronda 3", "Premios"],
       ["Como empezar", "Hablar con un agente"],
       ["Que es matriz 2x2", "Como funciona"],
       ["Cuantas personas necesito", "Quien me ayuda"],
@@ -185,9 +185,9 @@ const answers = [
       "Cuando tu red va cerrando y avanzando, te sigue. Ese movimiento ayuda a que el crecimiento del equipo no se pierda y fortalece tu proyeccion dentro del sistema."
   },
   {
-    keywords: ["temporada 1", "season 1", "12.100", "12100"],
+    keywords: ["ronda 1", "temporada 1", "season 1", "12.100", "12100"],
     reply:
-      "Temporada 1 - Proyeccion por ciclos\n\n" +
+      "Ronda 1 - Proyeccion por ciclos\n\n" +
       "Total proyectado: 12.100 USDT\n\n" +
       "Ciclo 1: 100 USDT\n" +
       "Ciclo 2: 300 USDT\n" +
@@ -197,9 +197,9 @@ const answers = [
       "Importante: son valores de referencia del modelo; no representan ingresos garantizados."
   },
   {
-    keywords: ["temporada 2", "season 2", "605.000", "605000"],
+    keywords: ["ronda 2", "temporada 2", "season 2", "605.000", "605000"],
     reply:
-      "Temporada 2 - Proyeccion por ciclos\n\n" +
+      "Ronda 2 - Proyeccion por ciclos\n\n" +
       "Total proyectado: 605.000 USDT\n\n" +
       "Ciclo 1: 5.000 USDT\n" +
       "Ciclo 2: 15.000 USDT\n" +
@@ -209,9 +209,9 @@ const answers = [
       "Importante: son valores de referencia del modelo; no representan ingresos garantizados."
   },
   {
-    keywords: ["temporada 3", "season 3", "12.100.000", "12100000"],
+    keywords: ["ronda 3", "temporada 3", "season 3", "12.100.000", "12100000"],
     reply:
-      "Temporada 3 - Proyeccion por ciclos\n\n" +
+      "Ronda 3 - Proyeccion por ciclos\n\n" +
       "Total proyectado: 12.100.000 USDT\n\n" +
       "Ciclo 1: 100.000 USDT\n" +
       "Ciclo 2: 300.000 USDT\n" +
@@ -223,7 +223,7 @@ const answers = [
   {
     keywords: ["premios", "premio", "recompensas", "recompensa"],
     reply:
-      "Premios de temporada\n\n" +
+      "Premios por ronda\n\n" +
       "- Wealthy Trip: Punta Cana + crucero de lujo\n" +
       "- Wealthy Car: Luxury Car 0 KM\n" +
       "- Wealthy Home: Bono 500.000 USDT Mansion\n\n" +
@@ -289,7 +289,7 @@ function findAnswer(text) {
 function menuMessage() {
   return (
     "Bienvenido a MyWhealt100.\n\n" +
-    "Elige una pregunta del menu o escribe una palabra clave como matriz, membresia, reventa, rondas, Follow Me, temporada, premios, ventajas o riesgos."
+    "Elige una pregunta del menu o escribe una palabra clave como matriz, membresia, reventa, rondas, Follow Me, premios, ventajas o riesgos."
   );
 }
 
