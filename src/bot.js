@@ -8,6 +8,8 @@ const token = process.env.BOT_TOKEN;
 const intervalMinutes = Number(process.env.AUTO_MESSAGE_INTERVAL_MINUTES || 60);
 const autoMessage = process.env.AUTO_MESSAGE || "Hola, este es un mensaje automatico.";
 const port = Number(process.env.PORT || 3000);
+const appUrl = process.env.APP_URL;
+const webhookPath = process.env.WEBHOOK_PATH || "/telegram-webhook";
 
 if (!token || token === "pon_aqui_el_token_de_botfather") {
   console.error("Falta BOT_TOKEN. Copia .env.example a .env y agrega el token de BotFather.");
@@ -375,10 +377,22 @@ async function sendAutomaticMessage() {
 }
 
 function startHealthServer() {
+  const webhookHandler = bot.webhookCallback(webhookPath);
+
   const server = http.createServer((request, response) => {
+    if (request.method === "POST" && request.url === webhookPath) {
+      return webhookHandler(request, response);
+    }
+
     if (request.url === "/health") {
       response.writeHead(200, { "Content-Type": "application/json" });
-      response.end(JSON.stringify({ ok: true, service: "telegram-auto-bot" }));
+      response.end(
+        JSON.stringify({
+          ok: true,
+          service: "telegram-auto-bot",
+          mode: appUrl ? "webhook" : "polling"
+        })
+      );
       return;
     }
 
@@ -395,16 +409,25 @@ function startHealthServer() {
 
 startHealthServer();
 
-bot
-  .launch()
-  .then(() => {
-    console.log("Bot de Telegram iniciado.");
+async function initializeBot() {
+  try {
+    if (appUrl) {
+      const webhookUrl = `${appUrl}${webhookPath}`;
+      await bot.telegram.setWebhook(webhookUrl);
+      console.log(`Webhook configurado en ${webhookUrl}`);
+    } else {
+      await bot.launch();
+      console.log("Bot de Telegram iniciado en modo polling.");
+    }
+
     console.log(`Mensaje automatico cada ${intervalMinutes} minuto(s).`);
     setInterval(sendAutomaticMessage, intervalMinutes * 60 * 1000);
-  })
-  .catch((error) => {
+  } catch (error) {
     console.error("No se pudo iniciar el bot de Telegram:", error.message);
-  });
+  }
+}
+
+initializeBot();
 
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
