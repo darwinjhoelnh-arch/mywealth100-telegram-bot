@@ -25,7 +25,7 @@ const menuKeyboard = {
       ["Wealthy Home", "Sistema Follow Me"],
       ["Temporada 1", "Temporada 2"],
       ["Temporada 3", "Premios"],
-      ["Como empezar", "Hablar con asesor"],
+      ["Como empezar", "Hablar con un agente"],
       ["Que es matriz 2x2", "Como funciona"],
       ["Cuantas personas necesito", "Quien me ayuda"],
       ["Puedo retirar", "Es obligatorio invitar"],
@@ -257,12 +257,12 @@ const answers = [
       "https://mywealth100.com/?ref=afb78642-d532-4fb4-8bce-bef51ec71164"
   },
   {
-    keywords: ["asesor", "whatsapp", "contacto", "hablar"],
+    keywords: ["hablar con un agente", "agente", "asesor", "whatsapp", "contacto", "hablar"],
+    whatsappUrl:
+      "https://api.whatsapp.com/send/?phone=593963121997&text=holaquiero+saber+como+funciona+el+negocio&type=phone_number&app_absent=0",
     reply:
-      "Quieres hablar con un asesor?\n\n" +
-      "Puedes solicitar acceso o continuar la conversacion con la persona que te invito.\n\n" +
-      "Tambien puedes visitar la pagina oficial:\n" +
-      "https://ventas.mywealth100.com/"
+      "Hablar con un agente\n\n" +
+      "Si quieres una explicacion mas directa, apoyo para registrarte o resolver dudas del sistema, puedes hablar ahora mismo con un agente por WhatsApp."
   }
 ];
 
@@ -335,6 +335,21 @@ bot.on("text", (ctx) => {
               {
                 text: "Ver imagen",
                 url: answer.imageUrl
+              }
+            ]
+          ]
+        }
+      });
+    }
+
+    if (answer.whatsappUrl) {
+      return ctx.reply(answer.reply, {
+        reply_markup: {
+          inline_keyboard: [
+            [
+              {
+                text: "Hablar por WhatsApp",
+                url: answer.whatsappUrl
               }
             ]
           ]
