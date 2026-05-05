@@ -247,14 +247,11 @@ const answers = [
       "activar matriz",
       "comenzar matriz"
     ],
-    imageUrl:
-      "https://web-assets.esetstatic.com/tn/-x700/wls/2018/09/blockchain-que-es-como-funciona.jpg",
+    actionUrl: "https://mywealth100.com/?ref=afb78642-d532-4fb4-8bce-bef51ec71164",
     reply:
       "Iniciar matriz\n\n" +
       "Para iniciar tu matriz, activa tu membresia, toma tu posicion y comienza el proceso de duplicacion invitando 2 personas directas.\n\n" +
-      "La estructura 2x2 te ayuda a visualizar tu primer nivel y segundo nivel de crecimiento.\n\n" +
-      "Inicia aqui:\n" +
-      "https://mywealth100.com/?ref=afb78642-d532-4fb4-8bce-bef51ec71164"
+      "La estructura 2x2 te ayuda a visualizar tu primer nivel y segundo nivel de crecimiento."
   },
   {
     keywords: ["hablar con un agente", "agente", "asesor", "whatsapp", "contacto", "hablar"],
@@ -327,14 +324,14 @@ bot.on("text", (ctx) => {
   const answer = findAnswer(ctx.message.text);
 
   if (answer) {
-    if (answer.imageUrl) {
+    if (answer.actionUrl) {
       return ctx.reply(answer.reply, {
         reply_markup: {
           inline_keyboard: [
             [
               {
-                text: "Ver imagen",
-                url: answer.imageUrl
+                text: "Iniciar matriz/Registrarse",
+                url: answer.actionUrl
               }
             ]
           ]
