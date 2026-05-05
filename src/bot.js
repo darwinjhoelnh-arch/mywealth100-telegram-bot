@@ -26,12 +26,12 @@ const menuKeyboard = {
       ["Temporada 1", "Temporada 2"],
       ["Temporada 3", "Premios"],
       ["Como empezar", "Hablar con asesor"],
-      ["Iniciar matriz"],
       ["Que es matriz 2x2", "Como funciona"],
       ["Cuantas personas necesito", "Quien me ayuda"],
       ["Puedo retirar", "Es obligatorio invitar"],
       ["Ventajas", "Riesgos"],
-      ["Clave del exito"]
+      ["Clave del exito"],
+      ["Iniciar matriz/Registrarse"]
     ],
     resize_keyboard: true
   }
@@ -240,7 +240,13 @@ const answers = [
       "5. Duplica: invita 2 personas y apoya el crecimiento del equipo."
   },
   {
-    keywords: ["iniciar matriz", "activar matriz", "comenzar matriz"],
+    keywords: [
+      "iniciar matriz/registrarse",
+      "iniciar matriz",
+      "registrarse",
+      "activar matriz",
+      "comenzar matriz"
+    ],
     imageUrl:
       "https://web-assets.esetstatic.com/tn/-x700/wls/2018/09/blockchain-que-es-como-funciona.jpg",
     reply:
