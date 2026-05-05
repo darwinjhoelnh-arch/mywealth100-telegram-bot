@@ -396,13 +396,18 @@ function startHealthServer() {
   return server;
 }
 
-bot.launch().then(() => {
-  console.log("Bot de Telegram iniciado.");
-  console.log(`Mensaje automatico cada ${intervalMinutes} minuto(s).`);
+startHealthServer();
 
-  startHealthServer();
-  setInterval(sendAutomaticMessage, intervalMinutes * 60 * 1000);
-});
+bot
+  .launch()
+  .then(() => {
+    console.log("Bot de Telegram iniciado.");
+    console.log(`Mensaje automatico cada ${intervalMinutes} minuto(s).`);
+    setInterval(sendAutomaticMessage, intervalMinutes * 60 * 1000);
+  })
+  .catch((error) => {
+    console.error("No se pudo iniciar el bot de Telegram:", error.message);
+  });
 
 process.once("SIGINT", () => bot.stop("SIGINT"));
 process.once("SIGTERM", () => bot.stop("SIGTERM"));
